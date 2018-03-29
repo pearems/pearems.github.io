@@ -3,16 +3,18 @@ function update_member_profit(x) {
     $("#member_profit").text(String(x));
 }
 
-function set_pie_chart(x,y){
-    tmp = "c100 p"+String(parseInt(y/3))+" big";
+function set_pie_chart(x,y,z){
+    tmp = "c100 p"+String(parseInt(y/3))+" big "+z;
     $("#"+x).attr("class",tmp);
-    $("#"+x+"_text").text(String(parseInt(y/3))+"%");  
+    $("#"+x+"_text").text(String(parseInt(y/3))+"%");
     console.log("change data");
 }
 // function changedata(x) {
 //     document.getElementById("solar").setAttribute("data-goal",String(x))
 // }
 
+
+//test
 
 // document.getElementById("solar").setAttribute("data-goal","20");
 
@@ -51,9 +53,22 @@ $( document ).ready(function() {
         console.log(data.key);
         console.log(data.val());
         if (data.key == "solar"){
-            set_pie_chart("pie_solar",data.val())
+            set_pie_chart("pie_solar",data.val(),"orange");
             // $("#pie_solar").text(String(parseInt(data.val())));
         }
+        else if (data.key == "water"){
+            set_pie_chart("pie_water",data.val(),"");
+            // $("#pie_hydro").text(String(parseInt(data.val())));
+        }
+        else if (data.key == "bio"){
+            set_pie_chart("pie_bio",data.val(),"green");
+            // $("#pie_hydro").text(String(parseInt(data.val())));
+        }
+        else if (data.key == "waste"){
+            set_pie_chart("pie_waste",data.val(),"yellow");
+            // $("#pie_hydro").text(String(parseInt(data.val())));
+        }
+
     });
 
 });
