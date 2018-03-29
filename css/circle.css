@@ -1042,6 +1042,15 @@
 .c100.green:hover > span {
   color: #4db53c;
 }
+/*  */
+.c100.yellow .bar,
+.c100.yellow .fill {
+  border-color: #ffcc33 !important;
+}
+.c100.yellow:hover > span {
+  color: #ffcc33;
+}
+/*  */
 .c100.green.dark .bar,
 .c100.green.dark .fill {
   border-color: #5fd400 !important;
@@ -1051,10 +1060,10 @@
 }
 .c100.orange .bar,
 .c100.orange .fill {
-  border-color: #dd9d22 !important;
+  border-color: #ff4500 !important;
 }
 .c100.orange:hover > span {
-  color: #dd9d22;
+  color: #ff4500;
 }
 .c100.orange.dark .bar,
 .c100.orange.dark .fill {
