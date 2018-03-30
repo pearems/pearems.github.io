@@ -255,52 +255,6 @@
 
 </section>
 
-    <h3>Location of Renewable Energy Company</h3>
-    <div id="mapgoogle" style="width:100%;height:580px;"></div>
-    <script>
-        function initMap()
-        {
-            var locations = [
-            ['บจก.บิน่า พูรี่ พาวเวอร์ (ไทยแลนด์) (โครงการ 1)', 18.031437, 99.807641, 'bio'],
-            ['บจก. แพร่สุริยะกิจ', 18.165999, 100.169134, 'solar'],
-            ['บจก.นอร์ท รูฟทอป', 18.130475, 100.129875, 'solar'],
-            ['บจก. โซล่าร์ ทาวน์', 18.099711, 100.131402, 'solar'],
-            ['บจก.โคลเว่อร์ พาวเว่อร์', 17.838830, 99.876197, 'bio'],
-            ['บจก. ศักดาพรเอนเนอร์ยี', 17.977553, 100.070220, 'bio'],
-            ['บจก. โซล่าร์ ทาวน์', 18.099711, 100.131402, 'solar'],
-            ['บจก.โคลเว่อร์ พาวเว่อร์', 17.838830, 99.876197, 'bio']
-          ];
-    
-          var map = new google.maps.Map(document.getElementById('mapgoogle'), {
-            zoom: 7,
-            center: new google.maps.LatLng(18.130475, 100.129875),
-            mapTypeId: google.maps.MapTypeId.ROADMAP
-          });
-    
-          var infowindow = new google.maps.InfoWindow();
-    
-          var marker, i;
-    
-          for (i = 0; i < locations.length; i++) {  
-            marker = new google.maps.Marker({
-              position: new google.maps.LatLng(locations[i][1], locations[i][2]),
-              map: map,
-              icon: './images/'+locations[i][3]+'.png'
-            });
-    
-            google.maps.event.addListener(marker, 'click', (function(marker, i) {
-              return function() {
-                infowindow.setContent(locations[i][0]);
-                infowindow.open(map, marker);
-              }
-            })(marker, i));
-          }
-        }
-        </script>
-
-
-
-
   <script src="assets/web/assets/jquery/jquery.min.js"></script>
   <script src="assets/popper/popper.min.js"></script>
   <script src="assets/tether/tether.min.js"></script>
@@ -315,8 +269,7 @@
   <script src="assets/theme/js/script.js"></script>
   <script src="assets/js/test.js"></script>
   <script src="https://www.gstatic.com/firebasejs/4.12.0/firebase.js"></script>
-  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCpgqBC0CZGKc7oQg0ji4igwZiiJujsFUQ&callback=initMap"
-type="text/javascript"></script>
+
 
 
 </body>
