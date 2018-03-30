@@ -49,6 +49,12 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav nav-dropdown" data-app-modern-menu="true">
                 <li class="nav-item">
+                    <a class="nav-link link text-white display-4" href="#map">
+                        <span class="mbri-person mbr-iconfont mbr-iconfont-btn"></span>
+                        Map
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link link text-white display-4" href="#show_table">
                         <span class="mbri-home mbr-iconfont mbr-iconfont-btn"></span>
                         VSPP List
@@ -247,17 +253,45 @@
     </div>
 </section>
 
-
-    <div id="googleMap" style="width:100%;height:400px;"></div>
+    <h3>Location of Renewable Energy Company</h3>
+    <div id="map" style="width:100%;height:580px;"></div>
     <script>
-        function myMap() {
-        var mapProp= {
-            center:new google.maps.LatLng(51.508742,-0.120850),
-            zoom:5,
-        };
-        var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
+        function initMap()
+        {
+            var locations = [
+            ['บจก.บิน่า พูรี่ พาวเวอร์ (ไทยแลนด์) (โครงการ 1)', 18.031437, 99.807641, 'bio'],
+            ['บจก. แพร่สุริยะกิจ', 18.165999, 100.169134, 'solar'],
+            ['บจก.นอร์ท รูฟทอป', 18.130475, 100.129875, 'solar'],
+            ['Manly Beach', -33.80010128657071, 151.28747820854187, 2],
+            ['Maroubra Beach', -33.950198, 151.259302, 1]
+          ];
+    
+          var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 7,
+            center: new google.maps.LatLng(15.863, 101.044),
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+          });
+    
+          var infowindow = new google.maps.InfoWindow();
+    
+          var marker, i;
+    
+          for (i = 0; i < locations.length; i++) {  
+            marker = new google.maps.Marker({
+              position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+              map: map,
+            //   icon: './images/'+locations[i][3]+'.png'
+            });
+    
+            google.maps.event.addListener(marker, 'click', (function(marker, i) {
+              return function() {
+                infowindow.setContent(locations[i][0]);
+                infowindow.open(map, marker);
+              }
+            })(marker, i));
+          }
         }
-    </script>
+        </script>
 
 
 
@@ -276,7 +310,8 @@
   <script src="assets/theme/js/script.js"></script>
   <script src="assets/js/test.js"></script>
   <script src="https://www.gstatic.com/firebasejs/4.12.0/firebase.js"></script>
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBu-916DdpKAjTmJNIgngS6HL_kDIKU0aU&callback=myMap"></script>
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCpgqBC0CZGKc7oQg0ji4igwZiiJujsFUQ&callback=initMap"
+type="text/javascript"></script>
 
 
 </body>

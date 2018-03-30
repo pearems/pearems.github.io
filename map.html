@@ -3,7 +3,7 @@
   <head>
     <style>
        #map {
-        height: 400px;
+        height: 600px;
         width: 100%;
        }
     </style>
@@ -12,20 +12,43 @@
     <h3>My Google Maps Demo</h3>
     <div id="map"></div>
     <script>
-      function initMap() {
-        var uluru = {lat: -25.363, lng: 131.044};
-        var map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 4,
-          center: uluru
-        });
-        var marker = new google.maps.Marker({
-          position: uluru,
+    function initMap()
+    {
+        var locations = [
+        ['ไทยเอนเนยี่', 15.863, 101.044, 4],
+        ['Coogee Beach', 15.763, 101.259052, 5],
+        ['Cronulla Beach', -34.028249, 151.157507, 3],
+        ['Manly Beach', -33.80010128657071, 151.28747820854187, 2],
+        ['Maroubra Beach', -33.950198, 151.259302, 1]
+      ];
+
+      var map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 7,
+        center: new google.maps.LatLng(15.863, 101.044),
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+      });
+
+      var infowindow = new google.maps.InfoWindow();
+
+      var marker, i;
+
+      for (i = 0; i < locations.length; i++) {  
+        marker = new google.maps.Marker({
+          position: new google.maps.LatLng(locations[i][1], locations[i][2]),
           map: map
         });
+
+        google.maps.event.addListener(marker, 'click', (function(marker, i) {
+          return function() {
+            infowindow.setContent(locations[i][0]);
+            infowindow.open(map, marker);
+          }
+        })(marker, i));
       }
+    }
     </script>
 
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAhhU99l8kyCs15-vMADgnzCzq0zYWi740&callback=initMap"
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCpgqBC0CZGKc7oQg0ji4igwZiiJujsFUQ&callback=initMap"
 type="text/javascript"></script>
   </body>
 </html>
